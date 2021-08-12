@@ -1,0 +1,34 @@
+import 'package:flutter/material.dart';
+
+class AppColors {
+  static final Color white = Color(0xFFFFFFFF);
+  static final Color grey2 = Color.fromARGB(154, 115, 115, 115);
+  static final Color lightGrey = Color.fromARGB(255, 206, 206, 206);
+  static final Color black = Color(0xFF514766);
+  static final Color grey = Color(0xFF6E6680);
+
+  // static final Color kPrimaryColor = Color(0xFF943734);
+  static final Color kPrimaryColor = Color(0xFF943734);
+  static final Color kSecondaryColor = Color(0xFFC46865);
+  static final Color kTextColor = Color.fromARGB(255, 25, 25, 25);
+  static final Color kSecondaryTextColor = Color.fromARGB(255, 115, 115, 115);
+  static final Color kInvoiceColor = Color.fromARGB(255, 38, 161, 221);
+  static final Color kNextInvoiceColor = Color.fromARGB(255, 255, 120, 62);
+  static final Color kLimitColor = Color.fromARGB(255, 35, 125, 70);
+  static final Color kUnviewColor = Color.fromARGB(255, 245, 245, 245);
+  static final Color kLineColor = Color.fromARGB(255, 204, 204, 204);
+  static final Color kLabelButtonColor = Color.fromARGB(255, 240, 241, 245);
+
+  //Greens
+  static final Color darkGreen = Color(0xFF04D361);
+
+  //Yellow
+  static final Color yellow = Color(0xFFFDD835);
+
+
+  //Reds
+  static final Color darkRed = Color(0xFFCC3750);
+
+  //LevelButton
+  static final Color levelButtonFacil = Color(0xFFEBEBFC);
+}
