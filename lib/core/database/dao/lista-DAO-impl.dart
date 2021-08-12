@@ -1,0 +1,47 @@
+import 'package:list_of_lists/core/database/interfaces/lista-DAO.dart';
+import 'package:list_of_lists/core/entity/lista.dart';
+import 'package:list_of_lists/core/utils/constants.dart';
+import 'package:sqflite/sqflite.dart';
+
+import '../connection.dart';
+
+class ListaDAOImpl implements ListaDAO {
+  Database? _db;
+  var sql;
+
+  @override
+  Future<List<Lista>> find() async {
+    _db = await Connection.get();
+     List<Map<String,dynamic>> result = await _db!.query(Constants.TABLE_LISTA);
+     List<Lista> resultList = List.generate(result.length, (index){
+       var row = result[index];
+       return Lista(
+         id: row[Lista.ID],
+         name: row[Lista.NAME],
+         idUser: row[Lista.ID_USER],
+         status: row[Lista.STATUS],
+         createDate: row[Lista.CREATE_DATE],
+       );
+     });
+     return resultList;
+  }
+
+  @override
+  remove(int id) async {
+    _db = await Connection.get();
+    sql = "DELETE FROM lista WHERE id =? ";
+    _db!.rawDelete(sql, [id]);
+  }
+
+  @override
+  save(Lista lista) async {
+    _db = await Connection.get();
+    if (lista.id == null) {
+      sql = """INSERT INTO lista (name, id_user) VALUES(?,?) """;
+      _db!.rawInsert(sql, [lista.name, lista.idUser]);
+    } else {
+      sql = "UPDATE lista SET name=? WHERE id=?";
+      _db!.rawUpdate(sql, [lista.name]);
+    }
+  }
+}
