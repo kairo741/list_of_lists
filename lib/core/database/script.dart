@@ -1,4 +1,3 @@
-
 final createUser = """
 CREATE TABLE user(
 id INTEGER PRIMARY KEY AUTOINCREMENT
@@ -12,6 +11,7 @@ final createLista = """
 CREATE TABLE lista(
 id INTEGER PRIMARY KEY AUTOINCREMENT
 , name VARCHAR (150) NOT NULL
+, icon INTEGER DEFAULT 0xe385
 , id_user INT NOT NULL
 , create_date DATE NOT NULL DEFAULT CURRENT_TIMESTAMP
 , status CHAR(1) NOT NULL DEFAULT 'A'
@@ -32,7 +32,6 @@ id INTEGER PRIMARY KEY AUTOINCREMENT
 );
 """;
 
-
 ///Inserts///
 
 final insertUser = """
@@ -40,13 +39,17 @@ INSERT INTO user (name)
 VALUES('Kairo');
 """;
 
+final insertLista = """
+INSERT INTO lista (name, icon,id_user)
+VALUES('Lista 1', 0xf6f4,1), ('Lista Fullmetal', 0xe7e5,1), ('Lista Kairo', 0xf85a,1), ('Lista Compras', 0xe216,1);
+""";
+
+final insertLista2 = """
+INSERT INTO lista (name,id_user)
+VALUES('Lista ASDASDASD',1);
+""";
+
 final insertItem = """
 INSERT INTO item (name, id_list)
 VALUES('Objeto 1',1), ('Objeto 2',1), ('Objeto 3',1),('Objeto 4',1) ,('Objeto 5',1);
 """;
-
-final insertLista = """
-INSERT INTO lista (name, id_user)
-VALUES('Lista 1', 1);
-""";
-
