@@ -22,7 +22,7 @@ class ItemDAOImpl implements ItemDAO {
          base64photo: row[Item.BASE64_PHOTO],
          idList: row[Item.ID_LIST],
          status: row[Item.STATUS],
-         createDate: row[Item.CREATE_DATE],
+         createDate: DateTime.parse(row[Item.CREATE_DATE]),
        );
      });
      return resultList;

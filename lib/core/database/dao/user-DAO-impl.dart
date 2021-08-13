@@ -19,7 +19,7 @@ class UserDAOImpl implements UserDAO {
          id: row[User.ID],
          name: row[User.NAME],
          status: row[User.STATUS],
-         createDate: row[User.CREATE_DATE],
+         createDate: DateTime.parse(row[User.CREATE_DATE]),
        );
      });
      return resultList;
