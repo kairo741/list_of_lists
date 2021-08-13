@@ -6,4 +6,10 @@ class Constants{
   static const TABLE_ITEM = "item";
 
 
+  static const APP_ICONS_FAMILY = "MaterialIcons";
+
+  static const ACTIVE = "A";
+  static const INACTIVE = "I";
+
+
 }
