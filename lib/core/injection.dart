@@ -14,15 +14,15 @@ import 'database/services/user-service.dart';
 
 setupInjection(){
   GetIt getIt = GetIt.I;
-
-  getIt.registerSingleton<ItemDAO>(ItemDAOImpl());
-
-  getIt.registerSingleton<ItemService>(ItemService());
+  getIt.registerSingleton<UserDAO>(UserDAOImpl());
+  getIt.registerSingleton<UserService>(UserService());
 
   getIt.registerSingleton<ListaDAO>(ListaDAOImpl());
   getIt.registerSingleton<ListaService>(ListaService());
 
-  getIt.registerSingleton<UserDAO>(UserDAOImpl());
-  getIt.registerSingleton<UserService>(UserService());
+  getIt.registerSingleton<ItemDAO>(ItemDAOImpl());
+  getIt.registerSingleton<ItemService>(ItemService());
+
+
 
 }
