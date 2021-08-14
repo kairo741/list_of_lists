@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:list_of_lists/ui/screens/home/view/home-page.dart';
+import 'package:list_of_lists/ui/styles/app-colors.dart';
 import 'package:list_of_lists/ui/styles/custom-text-theme.dart';
-
 
 class MyApp extends StatelessWidget {
   @override
@@ -9,7 +9,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "List of Lists",
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(fontFamily: 'Gotham-SSm', primarySwatch: Colors.red, textTheme: customTextTheme),
+      theme: ThemeData(
+          fontFamily: 'Gotham-SSm',
+          primarySwatch: AppColors.kPrimaryMaterialColor,
+          textTheme: customTextTheme),
       home: HomePage(),
     );
   }
