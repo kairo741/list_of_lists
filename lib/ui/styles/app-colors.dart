@@ -8,7 +8,7 @@ class AppColors {
   static final Color grey = Color(0xFF6E6680);
 
   // static final Color kPrimaryColor = Color(0xFF943734);
-  static final Color kPrimaryColor = Color(0xFF943734);
+  static final Color  kPrimaryColor= Color(0xFF695D89);
   static final Color kSecondaryColor = Color(0xFFC46865);
   static final Color kTextColor = Color.fromARGB(255, 25, 25, 25);
   static final Color kSecondaryTextColor = Color.fromARGB(255, 115, 115, 115);

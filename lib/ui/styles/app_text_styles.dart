@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -19,8 +18,8 @@ class AppTextStyles {
 
   static final TextStyle titleBoldBlack = GoogleFonts.notoSans(
     color: AppColors.black,
-    fontSize: 20,
-    fontWeight: FontWeight.w600,
+    fontSize: 26,
+    fontWeight: FontWeight.bold,
   );
 
   static final TextStyle heading = GoogleFonts.notoSans(
@@ -87,10 +86,30 @@ class AppTextStyles {
     fontSize: 11,
     fontWeight: FontWeight.normal,
   );
+  static final TextStyle body16 = GoogleFonts.notoSans(
+    color: AppColors.kSecondaryTextColor,
+    fontSize: 16,
+    fontWeight: FontWeight.normal,
+  );
+  static final TextStyle body16white = GoogleFonts.notoSans(
+    color: Colors.white,
+    fontSize: 16,
+    fontWeight: FontWeight.normal,
+  );
   static final textBlack = GoogleFonts.roboto(
     fontSize: 16,
-    fontWeight: FontWeight.w600,
+    fontWeight: FontWeight.normal,
     color: Colors.black,
+  );
+  static final textBlackBold = GoogleFonts.roboto(
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
+    color: Colors.black,
+  );
+  static final textWhiteBold = GoogleFonts.roboto(
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
+    color: Colors.white,
   );
   static final textBigBold = GoogleFonts.roboto(
     fontSize: 30,
@@ -102,10 +121,9 @@ class AppTextStyles {
     color: AppColors.kPrimaryColor,
   );
   static final textNuBold2 = TextStyle(
-    color: AppColors.kPrimaryColor,
-    fontWeight: FontWeight.normal,
-    fontSize: 18
-  );
+      color: AppColors.kPrimaryColor,
+      fontWeight: FontWeight.normal,
+      fontSize: 18);
 
   static final text = GoogleFonts.roboto(
     fontSize: 18,
@@ -134,11 +152,6 @@ class AppTextStyles {
     fontSize: 26,
     fontWeight: FontWeight.w600,
     color: Colors.black,
-  );
-  static final textWhiteBold = GoogleFonts.roboto(
-    fontSize: 16,
-    fontWeight: FontWeight.w600,
-    color: Colors.white,
   );
   static final textGrey = GoogleFonts.roboto(
     color: Colors.grey,
