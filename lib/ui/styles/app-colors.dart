@@ -9,6 +9,24 @@ class AppColors {
 
   // static final Color kPrimaryColor = Color(0xFF943734);
   static final Color  kPrimaryColor= Color(0xFF695D89);
+
+  static const int _kPrimaryValue = 0xFF695D89;
+  static const MaterialColor kPrimaryMaterialColor = MaterialColor(
+    _kPrimaryValue,
+    <int, Color>{
+      50: Color.fromRGBO(105, 93, 137, .1),
+      100: Color.fromRGBO(105, 93, 137, .2),
+      200: Color.fromRGBO(105, 93, 137, .3),
+      300: Color.fromRGBO(105, 93, 137, .4),
+      400: Color.fromRGBO(105, 93, 137, .5),
+      500: Color(_kPrimaryValue),
+      600: Color.fromRGBO(105, 93, 137, .7),
+      700: Color.fromRGBO(105, 93, 137, .8),
+      800: Color.fromRGBO(105, 93, 137, .9),
+      900: Color.fromRGBO(105, 93, 137, 1),
+    },
+  );
+
   static final Color kSecondaryColor = Color(0xFFC46865);
   static final Color kTextColor = Color.fromARGB(255, 25, 25, 25);
   static final Color kSecondaryTextColor = Color.fromARGB(255, 115, 115, 115);
