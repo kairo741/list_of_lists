@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:list_of_lists/ui/shared-components/shared-asset-icon.dart';
+import 'package:list_of_lists/ui/styles/app-colors.dart';
 
 class SharedListTiles extends StatelessWidget {
   final String title;
@@ -51,7 +52,7 @@ class SharedListTiles extends StatelessWidget {
               IconButton(
                   icon: Icon(
                     Icons.delete_forever,
-                    color: Colors.red,
+                    color: AppColors.kPrimaryColor,
                   ),
                   onPressed: deleteButton),
             ],

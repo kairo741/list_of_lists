@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:list_of_lists/core/controller/lista/lista-controller.dart';
 import 'package:list_of_lists/core/entity/lista.dart';
 import 'package:list_of_lists/ui/screens/edit-lista/components/triple-icon-row.dart';
+import 'package:list_of_lists/ui/screens/home/view/home-page.dart';
 import 'package:list_of_lists/ui/shared-components/shared-app-bar.dart';
 import 'package:list_of_lists/ui/shared-components/shared-asset-icon.dart';
+import 'package:list_of_lists/ui/shared-components/shared-button.dart';
 import 'package:list_of_lists/ui/shared-components/shared-text-field.dart';
 import 'package:list_of_lists/ui/styles/app-colors.dart';
 import 'package:list_of_lists/ui/styles/app_text_styles.dart';
@@ -19,9 +22,15 @@ class EditLista extends StatefulWidget {
 }
 
 class _EditLista extends State<EditLista> {
+  var oldName;
+  var oldIcon;
+  ListaController _controller = ListaController();
+
   @override
   void initState() {
     super.initState();
+    oldName = widget.listaNameController.text;
+    oldIcon = widget.lista.icon;
   }
 
   @override
@@ -45,10 +54,14 @@ class _EditLista extends State<EditLista> {
             SizedBox(
               height: 25,
             ),
+
+            ///name
             SharedTextField(
               controller: widget.listaNameController,
               onChanged: (value) {
-                widget.lista.name = value;
+                setState(() {
+                  widget.lista.name = value;
+                });
               },
               icon: Icons.edit,
               labelText: "Nome da Lista",
@@ -57,11 +70,11 @@ class _EditLista extends State<EditLista> {
             SizedBox(
               height: 25,
             ),
+
+            ///create_date
             SharedTextField(
               controller: widget.listaDateController,
-              onChanged: (value) {
-                // widget.lista.name = value;
-              },
+              onChanged: (value) {},
               icon: Icons.date_range,
               labelText: "Data de Criação",
               showLabelAboveTextField: true,
@@ -70,11 +83,27 @@ class _EditLista extends State<EditLista> {
             SizedBox(
               height: 25,
             ),
+            SharedButton(
+              onTap: oldName == widget.listaNameController.text && oldIcon == widget.lista.icon
+                  ? null
+                  : () {
+                      _finish(context);
+                    },
+              label: "Salvar",
+              icon: Icons.send,
+            )
           ],
         ),
       ),
     );
   }
+
+  _finish(BuildContext context) {
+    // _showDialog(context);
+    _controller.preSaveLista(context, widget.lista);
+    Navigator.of(context).pop();
+  }
+
 
   _showModalBottomSheet(BuildContext context) {
     showModalBottomSheet(
@@ -99,6 +128,7 @@ class _EditLista extends State<EditLista> {
                   SizedBox(
                     height: 10,
                   ),
+                  // todo - alterar essas ROWs para Grid.view
                   TripleIconRow(
                     icon1: Icons.ac_unit_sharp.codePoint,
                     onPressedIcon1: () {

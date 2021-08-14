@@ -44,11 +44,17 @@ class ListaDAOImpl implements ListaDAO {
   save(Lista lista) async {
     _db = await Connection.get();
     if (lista.id == null) {
-      sql = """INSERT INTO lista (name, id_user) VALUES(?,?) """;
-      _db!.rawInsert(sql, [lista.name, lista.idUser]);
+      sql = """INSERT INTO lista (name,icon, id_user) VALUES(?,?,?) """;
+      _db!.rawInsert(sql, [lista.name, lista.icon, lista.idUser]);
     } else {
-      sql = "UPDATE lista SET name=? WHERE id=?";
-      _db!.rawUpdate(sql, [lista.name]);
+      sql = "UPDATE lista SET name=?, icon=? WHERE id=?";
+      debugPrint("UPDATE lista SET name=" +
+          lista.name +
+          " icon=" +
+          lista.icon.toString() +
+          " WHERE id=" +
+          lista.id.toString());
+      _db!.rawUpdate(sql, [lista.name, lista.icon, lista.id]);
     }
   }
 }

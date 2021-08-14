@@ -40,7 +40,7 @@ class UserDAOImpl implements UserDAO {
       _db!.rawInsert(sql, [user.name]);
     } else {
       sql = "UPDATE user SET name=? WHERE id=?";
-      _db!.rawUpdate(sql, [user.name]);
+      _db!.rawUpdate(sql, [user.name, user.id]);
     }
   }
 }
