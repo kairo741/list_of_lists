@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:list_of_lists/core/controller/item/item-controller.dart';
 import 'package:list_of_lists/core/controller/lista/lista-controller.dart';
 import 'package:list_of_lists/core/controller/user/user-controller.dart';
 import 'package:list_of_lists/core/entity/lista.dart';
@@ -26,7 +27,8 @@ class HomeWidget extends State<HomePage> {
   }
 
   _getUser() async {
-    user = await userController.getUser(); // todo fazer tela de carregamento para carregar usuário
+    user = await userController
+        .getUser(); // todo fazer tela de carregamento para carregar usuário
   }
 
   @override
@@ -35,13 +37,6 @@ class HomeWidget extends State<HomePage> {
       appBar: SharedAppBar(
         title: "Seja bem vindo, " + user.name + "!",
         actions: [
-          IconButton(
-              onPressed: () {
-                setState(() {
-                  listaController.refreshList();
-                });
-              },
-              icon: Icon(Icons.refresh)),
           IconButton(
               onPressed: () {
                 _newLista(context);
@@ -79,7 +74,12 @@ class HomeWidget extends State<HomePage> {
                               child: SharedListTiles(
                                 title: lista.name,
                                 icon: lista.icon!,
-                                onTap: () {},
+                                onTap: () {
+                                  ItemController itemController =
+                                      ItemController(lista.id!);
+                                  return itemController.goToItems(
+                                      context, lista);
+                                },
                                 editButton: () {
                                   listaController.listaController = lista;
                                   listaController.editLista(context);
