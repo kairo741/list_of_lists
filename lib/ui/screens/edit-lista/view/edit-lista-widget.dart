@@ -43,7 +43,7 @@ class _EditLista extends State<EditLista> {
         child: ListView(
           children: [
             SharedAssetIcon(
-              widget.lista.icon!,
+              icon: widget.lista.icon!,
               onPressed: () {
                 _showModalBottomSheet(context);
               },

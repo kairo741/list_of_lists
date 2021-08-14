@@ -25,19 +25,19 @@ class TripleIconRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         SharedAssetIcon(
-          icon1,
+          icon: icon1,
           onPressed: onPressedIcon1,
           // buttonSize: Size(200, 200),
           iconSize: 35,
         ),
         SharedAssetIcon(
-          icon2,
+          icon: icon2,
           onPressed: onPressedIcon2,
           // buttonSize: Size(200, 200),
           iconSize: 35,
         ),
         SharedAssetIcon(
-          icon3,
+          icon: icon3,
           onPressed: onPressedIcon3,
           // buttonSize: Size(200, 200),
           iconSize: 35,

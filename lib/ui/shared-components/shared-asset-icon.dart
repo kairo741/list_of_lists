@@ -1,22 +1,26 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:list_of_lists/core/utils/constants.dart';
 import 'package:list_of_lists/ui/styles/app-colors.dart';
 
 class SharedAssetIcon extends StatelessWidget {
-  final int icon;
+  final int? icon;
+  final File? image;
   final bool disabled;
   final Function()? onPressed;
   final String? tag;
   final Size? buttonSize;
   final double? iconSize;
 
-  SharedAssetIcon(
-    this.icon, {
+  SharedAssetIcon({
+    this.icon,
     this.onPressed,
     this.tag,
     this.disabled = false,
     this.buttonSize,
     this.iconSize,
+    this.image,
   });
 
   @override
@@ -31,22 +35,17 @@ class SharedAssetIcon extends StatelessWidget {
           Stack(
             children: [
               ElevatedButton(
-                onPressed: onPressed,
-                onLongPress: null,
-                style: ElevatedButton.styleFrom(
-                  primary: this.disabled
-                      ? Colors.black45
-                      : AppColors.kLabelButtonColor,
-                  shape: CircleBorder(),
-                  fixedSize: buttonSize != null ? buttonSize : Size(72, 72),
-                  elevation: 0,
-                ),
-                child: Icon(
-                  IconData(icon, fontFamily: Constants.APP_ICONS_FAMILY),
-                  color: AppColors.kTextColor,
-                  size: iconSize,
-                ),
-              ),
+                  onPressed: onPressed,
+                  onLongPress: null,
+                  style: ElevatedButton.styleFrom(
+                    primary: this.disabled
+                        ? Colors.black45
+                        : AppColors.kLabelButtonColor,
+                    shape: CircleBorder(),
+                    fixedSize: buttonSize != null ? buttonSize : Size(72, 72),
+                    elevation: 0,
+                  ),
+                  child: _iconPicker()),
               if (tag != null)
                 Positioned(
                   bottom: 0,
@@ -72,5 +71,27 @@ class SharedAssetIcon extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Widget _iconPicker() {
+    if (image == null) {
+      return Icon(
+        IconData(icon!, fontFamily: Constants.APP_ICONS_FAMILY),
+        color: AppColors.kTextColor,
+        size: iconSize,
+      );
+    } else {
+      return Container(
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          image: DecorationImage(fit: BoxFit.fill, image: FileImage(image!)),
+          // borderRadius: BorderRadius.all(Radius.circular(1000)),
+          color: AppColors.kPrimaryColor,
+        ),
+      );
+
+      // ClipRRect(
+      //     borderRadius: BorderRadius.circular(8.0), child: Image.file(image!));
+    }
   }
 }

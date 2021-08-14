@@ -26,7 +26,7 @@ class SharedListTiles extends StatelessWidget {
       child: ListTile(
         contentPadding: EdgeInsets.all(10),
         leading: SharedAssetIcon(
-          icon,
+          icon: icon,
           buttonSize: Size(50, 50),
           iconSize: 30,
           onPressed: () {}, // todo - trocar para cor aleatória

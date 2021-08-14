@@ -1,4 +1,8 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:list_of_lists/core/controller/item/item-controller.dart';
 import 'package:list_of_lists/core/entity/item.dart';
 import 'package:list_of_lists/core/utils/constants.dart';
@@ -7,6 +11,7 @@ import 'package:list_of_lists/ui/shared-components/shared-asset-icon.dart';
 import 'package:list_of_lists/ui/shared-components/shared-button.dart';
 import 'package:list_of_lists/ui/shared-components/shared-text-field.dart';
 import 'package:list_of_lists/ui/styles/app-colors.dart';
+import 'package:list_of_lists/ui/styles/app_text_styles.dart';
 
 class NewItem extends StatefulWidget {
   final int listId;
@@ -27,8 +32,9 @@ class _NewItem extends State<NewItem> {
   }
 
   var itemName, itemImage;
-
+  final imagePicker = ImagePicker();
   bool itemStatus = true;
+  File? _image;
 
   @override
   Widget build(BuildContext context) {
@@ -53,8 +59,11 @@ class _NewItem extends State<NewItem> {
               height: 10,
             ),
             SharedAssetIcon(
-              Icons.image.codePoint,
-              onPressed: () {},
+              icon: Icons.image.codePoint,
+              image: _image,
+              onPressed: () {
+                _showModalBottomSheet(context);
+              },
               buttonSize: Size(200, 200),
               iconSize: 150,
             ),
@@ -115,10 +124,68 @@ class _NewItem extends State<NewItem> {
     );
   }
 
+  Future _getImage(ImageSource source) async {
+    final image = await ImagePicker()
+        .pickImage(source: source, maxHeight: 700, maxWidth: 700);
+
+    if (image != null) {
+      setState(() {
+        _image = File(image.path);
+      });
+    }
+  }
+
+  _showModalBottomSheet(BuildContext context) async {
+    showModalBottomSheet(
+        backgroundColor: Colors.transparent,
+        isScrollControlled: false,
+        context: context,
+        builder: (context) {
+          return Container(
+            padding: EdgeInsets.all(10),
+            height: MediaQuery.of(context).size.height * .2,
+            decoration: BoxDecoration(
+                color: AppColors.levelButtonFacil,
+                borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(30),
+                    topLeft: Radius.circular(30))),
+            child: ListView(
+              shrinkWrap: true,
+              children: [
+                SizedBox(
+                  height: 10,
+                ),
+                TextButton.icon(
+                    icon: Icon(Icons.image),
+                    onPressed: () {
+                      _getImage(ImageSource.gallery);
+                      Navigator.of(context).pop();
+                    },
+                    label: Text("Galeria", style: AppTextStyles.textBlackBold)),
+                SizedBox(
+                  height: 10,
+                ),
+                TextButton.icon(
+                    icon: Icon(Icons.camera_alt),
+                    onPressed: () {
+                      _getImage(ImageSource.camera);
+                      Navigator.of(context).pop();
+                    },
+                    label: Text(
+                      "Câmera",
+                      style: AppTextStyles.textBlackBold,
+                    )),
+              ],
+            ),
+          );
+        });
+  }
+
   _finish(BuildContext context) {
     var newItem = Item(
         name: itemName,
         status: itemStatus ? Constants.ACTIVE : Constants.INACTIVE,
+        base64photo: _image != null ? base64Encode(_image!.readAsBytesSync()) : null,
         idList: widget.listId);
 
     itemController.preSaveItem(context, newItem);
