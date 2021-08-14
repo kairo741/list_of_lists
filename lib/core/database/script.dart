@@ -53,3 +53,8 @@ final insertItem = """
 INSERT INTO item (name, id_list)
 VALUES('Objeto 1',1), ('Objeto 2',1), ('Objeto 3',1),('Objeto 4',1) ,('Objeto 5',1);
 """;
+
+final insertItem2 = """
+INSERT INTO item (name, id_list)
+VALUES('Objeto 1',2), ('Objeto 2',3), ('Objeto 3',2),('Objeto 4',3) ,('Objetoasdasd 5',2);
+""";
