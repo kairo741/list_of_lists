@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:list_of_lists/core/controller/lista/lista-controller.dart';
 import 'package:list_of_lists/core/entity/lista.dart';
 import 'package:list_of_lists/ui/screens/edit-lista/components/triple-icon-row.dart';
-import 'package:list_of_lists/ui/screens/home/view/home-page.dart';
 import 'package:list_of_lists/ui/shared-components/shared-app-bar.dart';
 import 'package:list_of_lists/ui/shared-components/shared-asset-icon.dart';
 import 'package:list_of_lists/ui/shared-components/shared-button.dart';
@@ -44,7 +43,7 @@ class _EditLista extends State<EditLista> {
         child: ListView(
           children: [
             SharedAssetIcon(
-              widget.lista.icon,
+              widget.lista.icon!,
               onPressed: () {
                 _showModalBottomSheet(context);
               },

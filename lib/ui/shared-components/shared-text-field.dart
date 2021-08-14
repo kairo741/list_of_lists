@@ -50,7 +50,7 @@ class SharedTextField extends StatelessWidget {
             decoration: InputDecoration(
               icon: Icon(
                 icon,
-                color: AppColors.grey,
+                color: AppColors.kPrimaryColor,
               ),
               fillColor: AppColors.levelButtonFacil,
               filled: true,

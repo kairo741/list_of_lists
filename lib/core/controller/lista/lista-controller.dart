@@ -4,7 +4,6 @@ import 'package:intl/intl.dart';
 import 'package:list_of_lists/core/database/services/lista-service.dart';
 import 'package:list_of_lists/core/entity/lista.dart';
 import 'package:list_of_lists/ui/screens/edit-lista/view/edit-lista-widget.dart';
-import 'package:list_of_lists/ui/shared-components/show-loading-widget.dart';
 import 'package:mobx/mobx.dart';
 
 part 'lista-controller.g.dart';
