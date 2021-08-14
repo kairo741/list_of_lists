@@ -5,9 +5,11 @@ import 'package:list_of_lists/core/controller/item/item-controller.dart';
 import 'package:list_of_lists/core/entity/item.dart';
 import 'package:list_of_lists/core/entity/lista.dart';
 import 'package:list_of_lists/core/utils/constants.dart';
+import 'package:list_of_lists/ui/screens/item/components/options-alert-box.dart';
 import 'package:list_of_lists/ui/shared-components/shared-app-bar.dart';
 import 'package:list_of_lists/ui/shared-components/shared-item-tiles.dart';
 import 'package:list_of_lists/ui/styles/app-colors.dart';
+import 'package:list_of_lists/ui/styles/app_text_styles.dart';
 
 class ItemListScreen extends StatefulWidget {
   final Lista lista;
@@ -86,8 +88,13 @@ class ItemListWidget extends State<ItemListScreen> {
                                   const EdgeInsets.only(top: 8.0, bottom: 2),
                               child: SharedItemTiles(
                                 title: item.name,
-                                image: item.base64photo != null ? item.base64photo : null,
+                                image: item.base64photo != null
+                                    ? item.base64photo
+                                    : null,
                                 onTap: () {},
+                                onLongPress: () {
+                                  _actionsPopUp(context, item);
+                                },
                               ),
                             );
                           } else {
@@ -111,5 +118,30 @@ class ItemListWidget extends State<ItemListScreen> {
 
   _newItem(BuildContext context) {
     return itemController!.newItem(context, widget.lista.id!);
+  }
+
+  _actionsPopUp(BuildContext context, Item item) {
+    showDialog(
+        context: context,
+        builder: (context) => OptionsAlertBox(
+              title: item.name,
+              content: Container(
+                // height: 250,
+                width: 100,
+                child: ListView(
+                  shrinkWrap: true,
+                  children: [
+                    TextButton.icon(
+                        onPressed: () {},
+                        icon: Icon(Icons.edit),
+                        label: Text("Editar")),
+                    TextButton.icon(
+                        onPressed: () {},
+                        icon: Icon(Icons.delete),
+                        label: Text("Deletar")),
+                  ],
+                ),
+              ),
+            ));
   }
 }
