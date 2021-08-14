@@ -8,16 +8,16 @@ class Lista {
 
   int? id;
   String name;
-  int icon;
+  int? icon;
   int idUser;
-  String status;
+  String? status;
   DateTime? createDate;
 
   Lista(
       {this.id,
       required this.name,
-      required this.icon,
+      this.icon,
       required this.idUser,
-      required this.status,
+      this.status,
       this.createDate});
 }
