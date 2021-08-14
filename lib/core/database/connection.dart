@@ -18,6 +18,7 @@ class Connection {
         db.execute(insertLista2);
         db.execute(insertItem);
         db.execute(insertItem2);
+        db.execute(insertItem3);
       });
     }
     return _db;

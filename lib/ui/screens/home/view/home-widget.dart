@@ -31,11 +31,19 @@ class HomeWidget extends State<HomePage> {
         .getUser(); // todo fazer tela de carregamento para carregar usuário
   }
 
+  var title = "Seja bem vindo";
+
   @override
   Widget build(BuildContext context) {
+    if (user != null) {
+      setState(() {
+        title = "Seja bem vindo, " + user.name + "!";
+      });
+    }
+
     return Scaffold(
       appBar: SharedAppBar(
-        title: "Seja bem vindo, " + user.name + "!",
+        title: title,
         actions: [
           IconButton(
               onPressed: () {

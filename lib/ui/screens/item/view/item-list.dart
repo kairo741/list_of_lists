@@ -79,13 +79,14 @@ class ItemListWidget extends State<ItemListScreen> {
                         shrinkWrap: true,
                         itemCount: list.length,
                         itemBuilder: (context, i) {
-                          var lista = list[i];
-                          if (lista.status == Constants.ACTIVE) {
+                          var item = list[i];
+                          if (item.status == Constants.ACTIVE) {
                             return Padding(
                               padding:
                                   const EdgeInsets.only(top: 8.0, bottom: 2),
                               child: SharedItemTiles(
-                                title: lista.name,
+                                title: item.name,
+                                image: item.base64photo != null ? item.base64photo : null,
                                 onTap: () {},
                               ),
                             );
@@ -94,7 +95,7 @@ class ItemListWidget extends State<ItemListScreen> {
                               padding:
                                   const EdgeInsets.only(top: 8.0, bottom: 2),
                               child: SharedItemTiles(
-                                title: lista.name,
+                                title: item.name,
                                 onTap: () {},
                               ),
                             );

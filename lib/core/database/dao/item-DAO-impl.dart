@@ -40,12 +40,11 @@ class ItemDAOImpl implements ItemDAO {
   save(Item item) async {
     _db = await Connection.get();
     if (item.id == null) {
-      sql = """INSERT INTO item (name, id_list, status) VALUES(?,?,?) """;
-      _db!.rawInsert(sql, [item.name, item.idList, item.status]);
+      sql = """INSERT INTO item (name, base64_photo,id_list, status) VALUES(?,?,?,?) """;
+      _db!.rawInsert(sql, [item.name, item.base64photo,item.idList, item.status]);
     } else {
-      // todo - alterar para receber as imagens
-      sql = "UPDATE item SET name=?, status=? WHERE id=?";
-      _db!.rawUpdate(sql, [item.name, item.status, item.id]);
+      sql = "UPDATE item SET name=?,base64_photo=? status=? WHERE id=?";
+      _db!.rawUpdate(sql, [item.name,item.base64photo, item.status, item.id]);
     }
   }
 }

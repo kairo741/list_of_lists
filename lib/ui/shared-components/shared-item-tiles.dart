@@ -1,8 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:list_of_lists/ui/styles/app-colors.dart';
 
 class SharedItemTiles extends StatelessWidget {
   final String title;
   final String? shortDescription;
+  final String? image;
 
   // final int icon;
   final GestureTapCallback? onTap;
@@ -14,6 +18,7 @@ class SharedItemTiles extends StatelessWidget {
     // required this.icon,
     this.onTap,
     this.onLongPress,
+    this.image,
   });
 
   @override
@@ -21,7 +26,21 @@ class SharedItemTiles extends StatelessWidget {
     return Container(
       child: ListTile(
         contentPadding: EdgeInsets.all(10),
-        // leading: SharedAssetIcon(
+
+        leading: image != null
+            ? Container(
+          height: 72,
+                width: 72,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                      fit: BoxFit.fill,
+                      image: MemoryImage(base64Decode(image!))),
+                  // borderRadius: BorderRadius.all(Radius.circular(1000)),
+                  color: AppColors.kPrimaryColor,
+                ),
+              )
+            : null,
         //   icon,
         //   buttonSize: Size(50, 50),
         //   iconSize: 30,

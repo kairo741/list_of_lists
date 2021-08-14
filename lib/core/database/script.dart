@@ -1,3 +1,5 @@
+import 'package:list_of_lists/core/utils/base64images.dart';
+
 final createUser = """
 CREATE TABLE user(
 id INTEGER PRIMARY KEY AUTOINCREMENT
@@ -51,10 +53,17 @@ VALUES('Lista ASDASDASD',1);
 
 final insertItem = """
 INSERT INTO item (name, id_list)
-VALUES('Objeto 1',1), ('Objeto 2',1), ('Objeto 3',1),('Objeto 4',1) ,('Objeto 5',1);
+VALUES('Objeto 1',4), ('Objeto 2',4), ('Objeto 3',4),('Objeto 4',4) ,('Objeto 5',4);
 """;
 
 final insertItem2 = """
 INSERT INTO item (name, id_list)
 VALUES('Objeto 1',2), ('Objeto 2',3), ('Objeto 3',2),('Objeto 4',3) ,('Objetoasdasd 5',2);
+""";
+
+final insertItem3 = """
+INSERT INTO item (name, base64_photo, id_list)
+VALUES('Objeto 1', '${base64images.IMAGE1}',1), ('Objeto 2', '${base64images.IMAGE3}',1), 
+('Objeto 3', '${base64images.IMAGE2}',1),('Objeto 4', '${base64images.IMAGE2}',1) ,
+('Objeto 5', '${base64images.IMAGE3}',1);
 """;
