@@ -31,11 +31,6 @@ class SharedListTiles extends StatelessWidget {
           iconSize: 30,
           onPressed: () {}, // todo - trocar para cor aleatória
         ),
-
-        // Icon(
-        //   IconData(icon, fontFamily: Constants.APP_ICONS_FAMILY),
-        //   size: 50,
-        // ),
         title: Text(
           title,
           style: TextStyle(fontWeight: FontWeight.bold),
@@ -46,7 +41,12 @@ class SharedListTiles extends StatelessWidget {
           child: Row(
             children: [
               ///EDIT BUTTON
-              IconButton(icon: Icon(Icons.edit), onPressed: editButton),
+              IconButton(
+                  icon: Icon(
+                    Icons.edit,
+                    color: AppColors.kPrimaryColor,
+                  ),
+                  onPressed: editButton),
 
               ///DELETE BUTTON
               IconButton(
