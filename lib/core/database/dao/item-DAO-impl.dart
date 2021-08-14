@@ -10,9 +10,10 @@ class ItemDAOImpl implements ItemDAO {
   var sql;
 
   @override
-  Future<List<Item>> find() async {
+  Future<List<Item>> find(int idList) async {
     _db = await Connection.get();
-    List<Map<String, dynamic>> result = await _db!.query(Constants.TABLE_LISTA);
+    List<Map<String, dynamic>> result =
+        await _db!.query(Constants.TABLE_ITEM, where: "id_list = $idList");
     List<Item> resultList = List.generate(result.length, (index) {
       var row = result[index];
       return Item(
@@ -39,12 +40,12 @@ class ItemDAOImpl implements ItemDAO {
   save(Item item) async {
     _db = await Connection.get();
     if (item.id == null) {
-      sql = """INSERT INTO item (name, id_list) VALUES(?,?) """;
-      _db!.rawInsert(sql, [item.name, item.idList]);
+      sql = """INSERT INTO item (name, id_list, status) VALUES(?,?,?) """;
+      _db!.rawInsert(sql, [item.name, item.idList, item.status]);
     } else {
       // todo - alterar para receber as imagens
-      sql = "UPDATE item SET name=? WHERE id=?";
-      _db!.rawUpdate(sql, [item.name, item.id]);
+      sql = "UPDATE item SET name=?, status=? WHERE id=?";
+      _db!.rawUpdate(sql, [item.name, item.status, item.id]);
     }
   }
 }
