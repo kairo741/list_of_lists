@@ -8,7 +8,7 @@ class Connection {
   static Future<Database?> get() async {
     if (_db == null) {
       var path = join(await getDatabasesPath(), "listsDatabase");
-      deleteDatabase(path);
+      // deleteDatabase(path);
       _db = await openDatabase(path, version: 1, onCreate: (db, dbVersion) {
         db.execute(createUser);
         db.execute(createLista);
