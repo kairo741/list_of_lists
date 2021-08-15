@@ -140,6 +140,7 @@ class ItemListWidget extends State<ItemListScreen> {
                         label: Text("Editar")),
                     TextButton.icon(
                         onPressed: () {
+                          Navigator.of(context).pop();
                           itemController!
                               .removeItem(item.id!, widget.lista.id!);
                         },
