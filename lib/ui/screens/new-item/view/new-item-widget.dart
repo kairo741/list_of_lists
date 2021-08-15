@@ -15,8 +15,10 @@ import 'package:list_of_lists/ui/styles/app_text_styles.dart';
 
 class NewItem extends StatefulWidget {
   final int listId;
+  Item? editItem;
+  final itemNameController = TextEditingController();
 
-  const NewItem({Key? key, required this.listId}) : super(key: key);
+  NewItem({Key? key, required this.listId}) : super(key: key);
 
   @override
   _NewItem createState() => _NewItem();
@@ -29,12 +31,20 @@ class _NewItem extends State<NewItem> {
   void initState() {
     super.initState();
     itemController = ItemController(widget.listId);
+    if (widget.editItem != null) {
+      id = widget.editItem!.id;
+      itemName = widget.editItem!.name;
+      itemImage = widget.editItem!.base64photo;
+      if (widget.editItem!.base64photo != null) {
+        _image = base64Decode(widget.editItem!.base64photo!);
+      }
+    }
   }
 
-  var itemName, itemImage;
+  var id, itemName, itemImage;
   final imagePicker = ImagePicker();
   bool itemStatus = true;
-  File? _image;
+  dynamic _image;
 
   @override
   Widget build(BuildContext context) {
@@ -73,6 +83,7 @@ class _NewItem extends State<NewItem> {
 
             ///name
             SharedTextField(
+              controller: widget.itemNameController,
               onChanged: (value) {
                 itemName = value;
               },
@@ -115,7 +126,7 @@ class _NewItem extends State<NewItem> {
               onTap: () {
                 _finish(context);
               },
-              label: "Criar",
+              label: widget.editItem != null ? "Alterar" : "Criar",
               icon: Icons.send,
             )
           ],
@@ -131,6 +142,7 @@ class _NewItem extends State<NewItem> {
     if (image != null) {
       setState(() {
         _image = File(image.path);
+        itemImage = base64Encode(_image!.readAsBytesSync());
       });
     }
   }
@@ -143,7 +155,10 @@ class _NewItem extends State<NewItem> {
         builder: (context) {
           return Container(
             padding: EdgeInsets.all(10),
-            height: MediaQuery.of(context).size.height * .2,
+            height: MediaQuery
+                .of(context)
+                .size
+                .height * .2,
             decoration: BoxDecoration(
                 color: AppColors.levelButtonFacil,
                 borderRadius: BorderRadius.only(
@@ -183,13 +198,12 @@ class _NewItem extends State<NewItem> {
 
   _finish(BuildContext context) {
     var newItem = Item(
+        id: id,
         name: itemName,
         status: itemStatus ? Constants.ACTIVE : Constants.INACTIVE,
-        base64photo: _image != null ? base64Encode(_image!.readAsBytesSync()) : null,
+        base64photo: itemImage,
         idList: widget.listId);
 
     itemController.preSaveItem(context, newItem);
-    // Navigator.of(context).pushAndRemoveUntil(
-    //     MaterialPageRoute(builder: (context) => HomePage()), (route) => false);
   }
 }

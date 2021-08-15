@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:list_of_lists/core/utils/constants.dart';
@@ -6,7 +6,7 @@ import 'package:list_of_lists/ui/styles/app-colors.dart';
 
 class SharedAssetIcon extends StatelessWidget {
   final int? icon;
-  final File? image;
+  final dynamic image;
   final bool disabled;
   final Function()? onPressed;
   final String? tag;
@@ -80,18 +80,24 @@ class SharedAssetIcon extends StatelessWidget {
         color: AppColors.kTextColor,
         size: iconSize,
       );
+    } else if (image is Uint8List) {
+      return Container(
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          image: DecorationImage(
+              fit: BoxFit.fill, image: MemoryImage(image)),
+          // borderRadius: BorderRadius.all(Radius.circular(1000)),
+          color: AppColors.kPrimaryColor,
+        ),
+      );
     } else {
       return Container(
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           image: DecorationImage(fit: BoxFit.fill, image: FileImage(image!)),
-          // borderRadius: BorderRadius.all(Radius.circular(1000)),
           color: AppColors.kPrimaryColor,
         ),
       );
-
-      // ClipRRect(
-      //     borderRadius: BorderRadius.circular(8.0), child: Image.file(image!));
     }
   }
 }

@@ -43,8 +43,8 @@ class ItemDAOImpl implements ItemDAO {
       sql = """INSERT INTO item (name, base64_photo,id_list, status) VALUES(?,?,?,?) """;
       _db!.rawInsert(sql, [item.name, item.base64photo,item.idList, item.status]);
     } else {
-      sql = "UPDATE item SET name=?,base64_photo=? status=? WHERE id=?";
-      _db!.rawUpdate(sql, [item.name,item.base64photo, item.status, item.id]);
+      sql = "UPDATE item SET name=?,base64_photo=?, status=? WHERE id=?";
+      await _db!.rawUpdate(sql, [item.name,item.base64photo, item.status, item.id]);
     }
   }
 }

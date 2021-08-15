@@ -45,6 +45,17 @@ abstract class _ItemController with Store {
     Navigator.of(context).push(MaterialPageRoute(builder: (context) => screen));
   }
 
+  editItem(BuildContext context, int idList, Item item) {
+    NewItem screen = NewItem(
+      listId: idList,
+    );
+    screen.itemNameController.text = item.name;
+    screen.editItem = item;
+
+
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => screen));
+  }
+
   preSaveItem(BuildContext context, Item item) async {
     await _service.save(item);
     refreshList(item.idList);
