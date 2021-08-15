@@ -28,8 +28,7 @@ class HomeWidget extends State<HomePage> {
   }
 
   _getUser() async {
-    user = await userController
-        .getUser(); // todo fazer tela de carregamento para carregar usuário
+    user = await userController.getUser();
   }
 
   var title = "Seja bem vindo";
@@ -46,9 +45,11 @@ class HomeWidget extends State<HomePage> {
       appBar: SharedAppBar(
         title: title,
         actions: [
-          IconButton(onPressed: () {
-            _firestoreSync(context);
-          }, icon: Icon(Icons.cloud_upload_rounded)),
+          IconButton(
+              onPressed: () {
+                _firestoreSync(context);
+              },
+              icon: Icon(Icons.cloud_upload_rounded)),
           IconButton(
               onPressed: () {
                 _newLista(context);
@@ -68,8 +69,8 @@ class HomeWidget extends State<HomePage> {
                       padding: const EdgeInsets.all(20.0),
                       child: Center(
                           child: CircularProgressIndicator(
-                            backgroundColor: AppColors.kSecondaryColor,
-                          )),
+                        backgroundColor: AppColors.kSecondaryColor,
+                      )),
                     );
                   } else {
                     List<Lista> list = future.data as List<Lista>;
@@ -82,13 +83,13 @@ class HomeWidget extends State<HomePage> {
                           if (lista.status == Constants.ACTIVE) {
                             return Padding(
                               padding:
-                              const EdgeInsets.only(top: 8.0, bottom: 2),
+                                  const EdgeInsets.only(top: 8.0, bottom: 2),
                               child: SharedListTiles(
                                 title: lista.name,
                                 icon: lista.icon!,
                                 onTap: () {
                                   ItemController itemController =
-                                  ItemController(lista.id!);
+                                      ItemController(lista.id!);
                                   return itemController.goToItems(
                                       context, lista);
                                 },
@@ -120,8 +121,7 @@ class HomeWidget extends State<HomePage> {
     var newLista;
     return showDialog(
         context: context,
-        builder: (context) =>
-            SharedTextPopUp(
+        builder: (context) => SharedTextPopUp(
               onChanged: (value) {
                 newLista = Lista(name: value, idUser: user.id!);
               },
@@ -141,8 +141,7 @@ class HomeWidget extends State<HomePage> {
   _deleteLista(BuildContext context, Lista lista) {
     return showDialog(
         context: context,
-        builder: (context) =>
-            SharedAlertBox(
+        builder: (context) => SharedAlertBox(
               content: RichText(
                 text: TextSpan(
                     text: "Essa ação excluirá a lista ",
