@@ -3,7 +3,7 @@ import 'package:list_of_lists/ui/my-app.dart';
 
 import 'core/injection.dart';
 
-void main() {
+void main() async {
   setupInjection();
   runApp(MyApp());
 }
