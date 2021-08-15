@@ -5,8 +5,9 @@ import 'package:list_of_lists/core/entity/lista.dart';
 class ListaService {
   var _dao = GetIt.I.get<ListaDAO>();
 
-  save(Lista lista) {
-    _dao.save(lista);
+  save(Lista lista) async {
+    validate(lista);
+    await _dao.save(lista);
   }
 
   remove(int id) {
@@ -15,5 +16,11 @@ class ListaService {
 
   Future<List<Lista>> find() {
     return _dao.find();
+  }
+
+  validate(Lista lista) {
+    if (lista.name == null) {
+      throw new Exception("O nome é obrigatório!");
+    }
   }
 }

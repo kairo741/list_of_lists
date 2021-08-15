@@ -24,8 +24,7 @@ import 'firestore/services/user-service-firestore.dart';
 setupInjection() async {
   GetIt getIt = GetIt.I;
 
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+
 
   ///Local
   getIt.registerSingleton<UserDAO>(UserDAOImpl());

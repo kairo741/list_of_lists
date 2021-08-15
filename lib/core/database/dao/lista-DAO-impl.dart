@@ -48,12 +48,12 @@ class ListaDAOImpl implements ListaDAO {
       _db!.rawInsert(sql, [lista.name, lista.idUser]);
     } else {
       sql = "UPDATE lista SET name=?, icon=? WHERE id=?";
-      debugPrint("UPDATE lista SET name=" +
-          lista.name +
-          " icon=" +
-          lista.icon.toString() +
-          " WHERE id=" +
-          lista.id.toString());
+      // debugPrint("UPDATE lista SET name=" +
+      //     lista.name +
+      //     " icon=" +
+      //     lista.icon.toString() +
+      //     " WHERE id=" +
+      //     lista.id.toString());
       _db!.rawUpdate(sql, [lista.name, lista.icon, lista.id]);
     }
   }
