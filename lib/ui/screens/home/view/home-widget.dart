@@ -4,6 +4,7 @@ import 'package:list_of_lists/core/controller/item/item-controller.dart';
 import 'package:list_of_lists/core/controller/lista/lista-controller.dart';
 import 'package:list_of_lists/core/controller/user/user-controller.dart';
 import 'package:list_of_lists/core/entity/lista.dart';
+import 'package:list_of_lists/core/firestore/syncController.dart';
 import 'package:list_of_lists/core/utils/constants.dart';
 import 'package:list_of_lists/ui/shared-components/shared-alert-box.dart';
 import 'package:list_of_lists/ui/shared-components/shared-app-bar.dart';
@@ -45,6 +46,9 @@ class HomeWidget extends State<HomePage> {
       appBar: SharedAppBar(
         title: title,
         actions: [
+          IconButton(onPressed: () {
+            _firestoreSync(context);
+          }, icon: Icon(Icons.cloud_upload_rounded)),
           IconButton(
               onPressed: () {
                 _newLista(context);
@@ -64,8 +68,8 @@ class HomeWidget extends State<HomePage> {
                       padding: const EdgeInsets.all(20.0),
                       child: Center(
                           child: CircularProgressIndicator(
-                        backgroundColor: AppColors.kSecondaryColor,
-                      )),
+                            backgroundColor: AppColors.kSecondaryColor,
+                          )),
                     );
                   } else {
                     List<Lista> list = future.data as List<Lista>;
@@ -78,13 +82,13 @@ class HomeWidget extends State<HomePage> {
                           if (lista.status == Constants.ACTIVE) {
                             return Padding(
                               padding:
-                                  const EdgeInsets.only(top: 8.0, bottom: 2),
+                              const EdgeInsets.only(top: 8.0, bottom: 2),
                               child: SharedListTiles(
                                 title: lista.name,
                                 icon: lista.icon!,
                                 onTap: () {
                                   ItemController itemController =
-                                      ItemController(lista.id!);
+                                  ItemController(lista.id!);
                                   return itemController.goToItems(
                                       context, lista);
                                 },
@@ -116,7 +120,8 @@ class HomeWidget extends State<HomePage> {
     var newLista;
     return showDialog(
         context: context,
-        builder: (context) => SharedTextPopUp(
+        builder: (context) =>
+            SharedTextPopUp(
               onChanged: (value) {
                 newLista = Lista(name: value, idUser: user.id!);
               },
@@ -136,7 +141,8 @@ class HomeWidget extends State<HomePage> {
   _deleteLista(BuildContext context, Lista lista) {
     return showDialog(
         context: context,
-        builder: (context) => SharedAlertBox(
+        builder: (context) =>
+            SharedAlertBox(
               content: RichText(
                 text: TextSpan(
                     text: "Essa ação excluirá a lista ",
@@ -153,5 +159,10 @@ class HomeWidget extends State<HomePage> {
                 Navigator.of(context).pop();
               },
             ));
+  }
+
+  _firestoreSync(BuildContext context) {
+    SyncController syncController = SyncController();
+    syncController.syncWithFirestore(context);
   }
 }

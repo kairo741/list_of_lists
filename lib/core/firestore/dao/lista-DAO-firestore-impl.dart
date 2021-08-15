@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:list_of_lists/core/database/interfaces/lista-DAO.dart';
 import 'package:list_of_lists/core/entity/lista.dart';
+import 'package:list_of_lists/core/firestore/interfaces/lista-DAO-firestore.dart';
 import 'package:list_of_lists/core/utils/constants.dart';
 
-class UserDAOFirestore implements ListaDAO {
+class ListaDAOFirestoreImpl implements ListaDAOFirestore {
   CollectionReference? listaCollection;
 
-  UserDAOFirestore() {
+  ListaDAOFirestoreImpl() {
     listaCollection =
         FirebaseFirestore.instance.collection(Constants.TABLE_LISTA);
   }

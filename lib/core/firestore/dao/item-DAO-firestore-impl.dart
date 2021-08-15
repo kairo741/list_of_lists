@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:list_of_lists/core/database/interfaces/item-DAO.dart';
 import 'package:list_of_lists/core/entity/item.dart';
+import 'package:list_of_lists/core/firestore/interfaces/item-DAO-firestore.dart';
 import 'package:list_of_lists/core/utils/constants.dart';
 
-class ItemDAOFirestore implements ItemDAO {
+class ItemDAOFirestoreImpl implements ItemDAOFirestore {
   CollectionReference? itemCollection;
 
-  ItemDAOFirestore() {
+  ItemDAOFirestoreImpl() {
     itemCollection =
         FirebaseFirestore.instance.collection(Constants.TABLE_ITEM);
   }
