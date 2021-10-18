@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:list_of_lists/core/backup/backup-controller.dart';
 import 'package:list_of_lists/core/controller/item/item-controller.dart';
 import 'package:list_of_lists/core/controller/lista/lista-controller.dart';
 import 'package:list_of_lists/core/controller/user/user-controller.dart';
@@ -161,7 +162,9 @@ class HomeWidget extends State<HomePage> {
   }
 
   _firestoreSync(BuildContext context) {
-    SyncController syncController = SyncController();
-    syncController.syncWithFirestore(context);
+    // SyncController syncController = SyncController();
+    // syncController.syncWithFirestore(context);
+    BackupController backupController = BackupController();
+    backupController.syncWithBackAPI(context);
   }
 }

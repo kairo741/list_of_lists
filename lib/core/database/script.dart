@@ -43,12 +43,12 @@ VALUES('Kairo');
 
 final insertLista = """
 INSERT INTO lista (name, icon,id_user)
-VALUES('Lista 1', 0xf6f4,1), ('Lista Fullmetal', 0xe7e5,1), ('Lista Kairo', 0xf85a,1), ('Lista Compras', 0xe216,1);
+VALUES('Lista 1', 0xf6f4,1), ('Lista de compras', 0xe7e5,1), ('Lista Kairo teste', 0xf85a,1), ('Lista de atividades', 0xe216,1);
 """;
 
 final insertLista2 = """
 INSERT INTO lista (name,id_user)
-VALUES('Lista ASDASDASD',1);
+VALUES('Lista Teste 05',1);
 """;
 
 final insertItem = """

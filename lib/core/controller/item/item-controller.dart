@@ -6,6 +6,7 @@ import 'package:list_of_lists/core/entity/lista.dart';
 import 'package:list_of_lists/ui/screens/item/view/item-list.dart';
 import 'package:list_of_lists/ui/screens/new-item/view/new-item-widget.dart';
 import 'package:list_of_lists/ui/shared-components/MyCustomRoute.dart';
+import 'package:list_of_lists/ui/styles/app-colors.dart';
 import 'package:mobx/mobx.dart';
 
 part 'item-controller.g.dart';
@@ -51,7 +52,6 @@ abstract class _ItemController with Store {
     );
     screen.itemNameController.text = item.name;
     screen.editItem = item;
-
 
     Navigator.of(context).push(MaterialPageRoute(builder: (context) => screen));
   }
