@@ -13,14 +13,6 @@ class UserServiceApiBack {
     Info result = Info.fromJson(response.data);
   }
 
-  remove(int id) {
-    // _dao.remove(id);
-  }
-
-  // Future<List<User>> find() {
-  //   return _dao.find();
-  // }
-
   validate(User user) {
     if (user.name == null) {
       throw new Exception("O nome é obrigatório!");

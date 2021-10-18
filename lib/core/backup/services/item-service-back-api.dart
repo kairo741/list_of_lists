@@ -14,4 +14,23 @@ class ItemServiceApiBack {
     var response = await dio.post(path, data: json);
     Info result = Info.fromJson(response.data);
   }
+
+  remove(int id) async {
+    String path = Constants.getUrlDeleteItem(id.toString());
+    var dio = await DioConfig.builderConfig();
+    var response = await dio.delete(path);
+    Info result = Info.fromJson(response.data);
+    return result;
+  }
+
+  Future<List<Item>> find() async {
+    String path = Constants.FIND_ITENS_PATH;
+    var dio = await DioConfig.builderConfig();
+    var response = await dio.get(path);
+    Info result = Info.fromJson(response.data);
+    List<Item> listas = result.object != null
+        ? result.object.map<Item>((e) => Item.fromJson(e)).toList()
+        : [];
+    return listas;
+  }
 }

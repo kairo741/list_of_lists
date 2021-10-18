@@ -5,6 +5,7 @@ import 'package:list_of_lists/core/backup/services/user-service-back-api.dart';
 import 'package:list_of_lists/core/controller/item/item-controller.dart';
 import 'package:list_of_lists/core/controller/lista/lista-controller.dart';
 import 'package:list_of_lists/core/controller/user/user-controller.dart';
+import 'package:list_of_lists/core/entity/Info.dart';
 import 'package:list_of_lists/ui/styles/app-colors.dart';
 
 class BackupController {
@@ -38,6 +39,26 @@ class BackupController {
       });
       _responseMessage(context, "Listas e Itens salvos na nuvem!");
     }
+  }
+
+  deleteItem(int id) async {
+    var info = _itemService.remove(id);
+    return info;
+  }
+
+  deleteLista(int id) async {
+    var info = await _listaService.remove(id);
+    return info;
+  }
+
+  findAllItens() async {
+    var list = await _itemService.find();
+    return list;
+  }
+
+  findAllListas() async {
+    var list = await _listaService.find();
+    return list;
   }
 
   _responseMessage(BuildContext context, String message) {
